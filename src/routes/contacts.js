@@ -11,11 +11,11 @@ router.post('/', async (req, res) => {
   res.send('Posting Contact');
 });
 
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
   res.send('Editing Contact');
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   res.send('Deleting Contact');
 });
 

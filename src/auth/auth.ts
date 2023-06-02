@@ -1,3 +1,5 @@
+import { JwtPayload } from 'jsonwebtoken';
+
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
@@ -11,7 +13,7 @@ passport.use( 'login',
         usernameField: 'email',
         passwordField: 'password'
       },
-      async (email, password, done) => {
+      async (email: string, password: string, done: Function) => {
         try {
             //Fake Users Database
             const psw = await bcrypt.hash('0000', 10);
@@ -45,7 +47,7 @@ passport.use(
         secretOrKey: process.env.APP_KEY, //TODO: take from param by url
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken('secret_token')
       },
-      async (token, done) => {
+      async (token: JwtPayload, done: Function) => {
         try {
           return done(null, token.user);
         } catch (error) {

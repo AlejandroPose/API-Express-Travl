@@ -1,5 +1,3 @@
-//Preguntar app_key en JWTstrategy dentro de auth
-
 import express, { Application } from "express";
 var cors = require('cors');
 const passport = require('passport');
