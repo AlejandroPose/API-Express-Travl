@@ -20,7 +20,7 @@ passport.use( 'login',
             const users = [{
                 email: 'aldrosposirah@gmail.com',
                 password: psw
-            }];
+            }];//BBDD
 
             const user = users.find( user => user.email === email);
   

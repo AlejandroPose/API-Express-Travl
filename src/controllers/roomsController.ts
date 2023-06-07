@@ -23,15 +23,15 @@ export const rooms_getAll = async (req: Request, res: Response) => {
     }
 };
 
-export const rooms_getUnique = async (req: Request<{id: number}>, res: Response) => {
+export const rooms_getUnique = async (req: Request, res: Response) => {
     try {
-        return res.send( await rooms_BD_getUniqueRoom(req.params.id) );
+        return res.send( await rooms_BD_getUniqueRoom(parseInt(req.params.id)) );
     } catch (err: any) {
         return res.sendStatus(500);
     }
 };
 
-export const rooms_createOne = async (req: Request<{}, Room>, res: Response) => {
+export const rooms_createOne = async (req: Request, res: Response) => {
     try {
         const newRoom = req.body;
         return res.send( rooms_BD_createRoom(newRoom) ).status(200);
@@ -40,18 +40,18 @@ export const rooms_createOne = async (req: Request<{}, Room>, res: Response) => 
     }
 };
 
-export const rooms_editOne = async (req: Request<{id: number}, Room>, res: Response) => {
+export const rooms_editOne = async (req: Request, res: Response) => {
     try {
         const newRoom = req.body;
-        return res.send( rooms_BD_editRoom(req.params.id, newRoom) ).status(200);
+        return res.send( rooms_BD_editRoom(parseInt(req.params.id), newRoom) ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }
 };
 
-export const rooms_deleteOne = async (req: Request<{id: number}>, res: Response) => {
+export const rooms_deleteOne = async (req: Request, res: Response) => {
     try {
-        return res.send( rooms_BD_deleteRoom(req.params.id) ).status(200);
+        return res.send( rooms_BD_deleteRoom(parseInt(req.params.id)) ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }

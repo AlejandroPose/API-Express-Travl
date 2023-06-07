@@ -19,15 +19,15 @@ export const users_getAll = async (req: Request, res: Response) => {
     }
 };
 
-export const users_getUnique = async (req: Request<{id: number}>, res: Response) => {
+export const users_getUnique = async (req: Request, res: Response) => {
     try {
-        return res.send( await users_BD_getUniqueUser(req.params.id) );
+        return res.send( await users_BD_getUniqueUser(parseInt(req.params.id)) );
     } catch (err: any) {
         return res.sendStatus(500);
     }
 };
 
-export const users_createOne = async (req: Request<{}, User>, res: Response) => {
+export const users_createOne = async (req: Request, res: Response) => {
     try {
         const newUser = req.body;
         return res.send( users_BD_createUser(newUser) ).status(200);
@@ -36,18 +36,18 @@ export const users_createOne = async (req: Request<{}, User>, res: Response) => 
     }
 };
 
-export const users_editOne = async (req: Request<{id: number}, User>, res: Response) => {
+export const users_editOne = async (req: Request, res: Response) => {
     try {
         const newUser = req.body;
-        return res.send( users_BD_editUser(req.params.id, newUser) ).status(200);
+        return res.send( users_BD_editUser(parseInt(req.params.id), newUser) ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }
 };
 
-export const users_deleteOne = async (req: Request<{id: number}>, res: Response) => {
+export const users_deleteOne = async (req: Request, res: Response) => {
     try {
-        return res.send( users_BD_deleteUser(req.params.id) ).status(200);
+        return res.send( users_BD_deleteUser(parseInt(req.params.id)) ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }

@@ -44,7 +44,7 @@ export async function users_BD_createUser(user: User) {
         database: 'travldashboard'
     });
     const [rows, fields] = await connection.execute(`INSERT INTO users (name,jobdescription,phone,schedule,image) values (${user.name},${user.job_description},${user.phone},${user.schedule},${user.image})`);
-    //console.log(rows);
+    //Parametros query
     return { message: 'Usuario creado correctamente' };
 };
 

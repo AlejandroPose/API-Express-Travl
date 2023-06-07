@@ -1,14 +1,23 @@
-const express = require('express');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
+import { NextFunction, Request, Response } from "express";
+
+//const express = require('express');
+// const passport = require('passport');
+// const jwt = require('jsonwebtoken');
+import express from 'express';
+import jwt from "jsonwebtoken";
+import passport from "passport";
 
 const router = express.Router();
 
+type User = {
+  email: string
+};
+
 router.post( '/login',
-    async (req, res, next) => {
+    async (req: Request, res: Response, next: NextFunction) => {
       passport.authenticate(
         'login',
-        async (err, user, info) => {
+        async (err: Error, user: User) => {
           try {
             if (err || !user) {
               const error = new Error('An error occurred.');
@@ -23,7 +32,7 @@ router.post( '/login',
                 if (error) return next(error);
   
                 const body = { email: user.email };
-                const token = jwt.sign({ user: body }, process.env.APP_KEY);
+                const token = jwt.sign({ user: body }, process.env.APP_KEY!);
   
                 return res.json({ token });
               }

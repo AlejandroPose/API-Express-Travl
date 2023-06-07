@@ -2,6 +2,7 @@ import express, { Application } from "express";
 var cors = require('cors');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+
 require('dotenv').config();
 
 require('./auth/auth');
