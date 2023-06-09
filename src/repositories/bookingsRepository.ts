@@ -24,6 +24,7 @@ export async function bookings_BD_getUniqueBooking(_id: string) {
 export async function bookigns_BD_createBooking(booking: IBooking) {
     const newBooking = new Booking(booking);
     const rows = await newBooking.save();
+    console.log(rows);
     return rows;
 };
 

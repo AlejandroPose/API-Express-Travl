@@ -5,20 +5,6 @@ import Booking from "./BookingSchema";
 import mongoose from "mongoose";
 const bcrypt = require('bcrypt');
 
-interface IRoom {
-    _id?: string
-    name: string
-    image1: string
-    image2: string
-    image3: string
-    bedType: string
-    roomFloor: string
-    facilities: string
-    price: number
-    offer: boolean
-    discount: number | null
-}; 
-
 async function autoGenerateUsers() {
     const psw = await bcrypt.hash('0000', 10);
     const loginUser = new User ({

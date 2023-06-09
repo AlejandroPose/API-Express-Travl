@@ -3,7 +3,8 @@ import { bookigns_BD_createBooking, bookings_BD_deleteBooking, bookings_BD_editB
 
 export const bookings_getAll = async (req: Request, res: Response) => {
     try {
-        return res.send( await bookings_BD_getAll() );
+        const result = await bookings_BD_getAll();
+        return res.send( result );
     } catch (err: any) {
         return res.sendStatus(500);
     }
@@ -11,7 +12,8 @@ export const bookings_getAll = async (req: Request, res: Response) => {
 
 export const bookings_getUnique = async (req: Request, res: Response) => {
     try {
-        return res.send( await bookings_BD_getUniqueBooking(req.params.id) );
+        const result = await bookings_BD_getUniqueBooking(req.params.id);
+        return res.send( result );
     } catch (err: any) {
         return res.sendStatus(500);
     }
@@ -19,7 +21,8 @@ export const bookings_getUnique = async (req: Request, res: Response) => {
 
 export const bookings_createOne = async (req: Request, res: Response) => {
     try {
-        return res.send( bookigns_BD_createBooking(req.body) ).status(200);
+        const result = await bookigns_BD_createBooking(req.body);
+        return res.send( result ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }
@@ -27,7 +30,8 @@ export const bookings_createOne = async (req: Request, res: Response) => {
 
 export const bookings_editOne = async (req: Request, res: Response) => {
     try {
-        return res.send( bookings_BD_editBooking(req.params.id, req.body) ).status(200);
+        const result = await bookings_BD_editBooking(req.params.id, req.body);
+        return res.send( result ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }
@@ -35,7 +39,8 @@ export const bookings_editOne = async (req: Request, res: Response) => {
 
 export const bookings_deleteOne = async (req: Request, res: Response) => {
     try {
-        return res.send( bookings_BD_deleteBooking(req.params.id) ).status(200);
+        const result = await bookings_BD_deleteBooking(req.params.id);
+        return res.send( result ).status(200);
     } catch (err: any) {
         return res.sendStatus(500);
     }
