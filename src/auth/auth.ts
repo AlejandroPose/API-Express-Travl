@@ -1,4 +1,5 @@
 import { JwtPayload } from 'jsonwebtoken';
+import UserSchema from '../data/UserSchema';
 
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
@@ -15,19 +16,13 @@ passport.use( 'login',
       },
       async (email: string, password: string, done: Function) => {
         try {
-            //Fake Users Database
-            const psw = await bcrypt.hash('0000', 10);
-            const users = [{
-                email: 'aldrosposirah@gmail.com',
-                password: psw
-            }];//BBDD
-
-            const user = users.find( user => user.email === email);
+          const usersDB = await UserSchema.find();
+          const user = usersDB.find( user => user.email === email);
   
           if (!user) {
             return done(null, false, { message: 'User not found' });
           }
-  
+
           const validate = await bcrypt.compare(password, user.password);
   
           if (!validate) {

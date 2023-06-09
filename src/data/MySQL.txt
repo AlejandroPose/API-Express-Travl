@@ -1,2 +1,0 @@
-USER: root
-PASSWORD: top_secret_3306
