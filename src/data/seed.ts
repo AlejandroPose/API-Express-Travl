@@ -1,4 +1,4 @@
-const { faker } = require("@faker-js/faker");
+import { faker } from "@faker-js/faker";
 import User from "./UserSchema";
 import Room from "./RoomSchema";
 import Booking from "./BookingSchema";
@@ -57,21 +57,26 @@ async function autoGenerateBookings() {
             image: "imgs/medusa2.jpg",
             specialRequest: faker.lorem.paragraph(),
             roomID: rooms[Math.floor(Math.random() * rooms.length)]._id, 
-            orderDate: `10/2${i}/2023`,
-            checkIn: `10/2${i+1}/2023`,
-            checkOut: `10/2${i+2}/2023`
+            orderDate: faker.date.recent({ days: 10 }),
+            checkIn: new Date(),
+            checkOut: faker.date.soon({ days: 20 })
         });
         await booking.save();
     }
 };
 
 async function generarTodo() {
-    mongoose.connect('mongodb://127.0.0.1:27017/travl');
-    const db = mongoose.connection;
-    await autoGenerateUsers();
-    await autoGenerateRooms();
-    await autoGenerateBookings();
-    db.close();
+    try {
+        mongoose.connect('mongodb://127.0.0.1:27017/travl');
+        const db = mongoose.connection;
+        await autoGenerateUsers();
+        await autoGenerateRooms();
+        await autoGenerateBookings();
+        db.close();
+        console.log('Datos insertados correctamente');
+    } catch (error) {
+        console.log('ERROR: ', error);
+    }
 };
 
 generarTodo();

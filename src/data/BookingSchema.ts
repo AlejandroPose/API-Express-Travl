@@ -19,15 +19,15 @@ const BookingSchema = new mongoose.Schema({
         require: true
     },
     orderDate: {
-        type: String,
+        type: Date,
         require: true
     },
     checkIn: {
-        type: String,
+        type: Date,
         require: true
     },
     checkOut: {
-        type: String,
+        type: Date,
         require: true
     },
 });
